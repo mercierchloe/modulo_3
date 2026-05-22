@@ -1,0 +1,184 @@
+% ============================================================
+%  SIMUL8 – Módulo 3: Planta Cervecera (Versión con Análisis Económico)
+%  Compilar con: pdflatex (dos pasadas)
+% ============================================================
+
+\documentclass[a4paper, 11pt]{article}
+
+% ── Paquetes Básicos y Estables ──────────────────────────────
+\usepackage[a4paper, left=2.2cm, right=2.2cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{lmodern}
+
+% Configuración de microtype para silenciar advertencias de \showhyphens
+\usepackage[verbose=silent]{microtype}
+
+% Paquetes Matemáticos (Esenciales para \text y fórmulas)
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{hyperref}
+
+% ── Colores ──────────────────────────────────────────────────
+\definecolor{darkblue}{HTML}{1B3A5C}
+\definecolor{medblue}{HTML}{2E6DA4}
+\definecolor{lightblue}{HTML}{D6E8F7}
+\definecolor{lightgray}{HTML}{F5F5F5}
+\definecolor{medgray}{HTML}{CCCCCC}
+\definecolor{forestgreen}{HTML}{228B22}
+
+% ── Hyperref ─────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=medblue,
+  urlcolor=medblue,
+  pdftitle={SIMUL8 - Módulo 3 - Planta Cervecera},
+  pdfauthor={Ingeniería de Procesos}
+}
+
+% ── Encabezado y pie de página ───────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{medblue}\textbf{SIMUL8 – Módulo 3}}
+\fancyhead[R]{\small\color{medgray}Planta Cervecera}
+\fancyfoot[C]{\small\color{medgray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{medblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% ── Títulos Simplificados (Sin titlesec ni cajas conflictivas)
+\newcommand{\mysection}[1]{%
+  \vspace{0.6cm}
+  {\large\bfseries\color{darkblue} #1}
+  \nopagebreak\vspace{0.1cm}
+  {\color{medblue}\hrule height 1.5pt}
+  \vspace{0.3cm}
+}
+
+\newcommand{\mysubsection}[1]{%
+  \vspace{0.4cm}
+  {\textbf{\color{darkblue} #1}}
+  \vspace{0.2cm}
+}
+
+% ── Caja para Contexto e Introducción ────────────────────────
+\newtcolorbox{contextbox}{
+  enhanced, breakable, colback=lightblue!40, colframe=medblue, arc=3pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt
+}
+
+% ── Caja para Resultados Económicos ──────────────────────────
+\newtcolorbox{econbox}{
+  enhanced, breakable, colback=white, colframe=forestgreen, arc=3pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  title={RESULTADOS ECONÓMICOS DE LA SIMULACIÓN},
+  coltitle=white, fonttitle=\bfseries, attach boxed title to top left={xshift=5mm, yshift=-2mm},
+  boxed title style={colback=forestgreen}
+}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% ══════════════════════════════════════════════════════════════
+\mysection{Introducción a la Simulación de Procesos}
+% ══════════════════════════════════════════════════════════════
+
+Simul8 es un software de simulación que sirve para recrear el funcionamiento real de una empresa en un entorno digital. Permite entender, analizar y mejorar los procesos de negocio sin correr riesgos ni gastar dinero en el mundo real.
+
+Para ilustrar su alcance, consideremos el caso de un \textbf{fast-food con dos entradas} (clientes y comida). Simul8 ayuda a comprender la dinámica del negocio mediante los siguientes pilares estructurales:
+
+\begin{contextbox}
+\begin{itemize}[leftmargin=1.5em, label={\color{medblue}\bullet}]
+\begin{contextbox}
+\begin{itemize}[leftmargin=1.5em, label={\color{medblue}\bullet}]
+\item \textbf{Identificar cuellos de botella:} Permite ver dónde se atasca el proceso. Por ejemplo, si los clientes llegan más rápido de lo que se prepara la comida, se formarán largas colas. Si la comida se prepara muy rápido pero no hay clientes, se desperdicia alimento.
+  \item \textbf{Sincronizar la oferta y la demanda:} Ayuda a calcular el equilibrio perfecto. Une la ``entrada de clientes'' con la ``entrada de comida'' en el momento exacto (la caja o el mostrador) para que el servicio sea fluido.
+  \item \textbf{Probar escenarios futuros (¿Qué pasaría si...?):} Permite modificar las reglas del juego de forma virtual. Por ejemplo: ¿Qué pasa si al mediodía llegan el doble de clientes? ¿Necesitamos otra cocina o más cajeros?
+  \item \textbf{Optimizar recursos:} Ayuda a decidir cuántos empleados se necesitan en la cocina y cuántos en las cajas según las horas de mayor movimiento, minimizando el tiempo de espera del cliente.
+\end{itemize}
+\end{contextbox}
+\end{itemize}
+\end{contextbox}
+
+En conclusión, Simul8 funciona como un laboratorio para que las organizaciones comprendan cómo interactúan sus diferentes elementos (como clientes y productos) y así puedan tomar decisiones fundamentadas para maximizar su eficiencia operativa.
+
+\vspace{0.4cm}
+
+% ══════════════════════════════════════════════════════════════
+\mysection{Análisis de Costos y Rentabilidad}
+% ══════════════════════════════════════════════════════════════
+
+Basado en la corrida de simulación que arrojó una producción de \textbf{86 cervezas}, se presenta el desglose financiero del proceso productivo.
+
+\mysubsection{Estructura de Costos por Unidad (100 litros)}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{X r}
+\rowcolor{lightgray}\textbf{Concepto de Insumo} & \textbf{Costo por Unidad (\$)} \\
+Etiquetas & 20.00 \\
+Botellas & 100.00 \\
+Lúpulo & 10.00 \\
+Agua & 5.00 \\
+Malta & 10.00 \\
+\midrule
+\textbf{Subtotal Insumos} & \textbf{145.00} \\
+\rowcolor{yellow!10} Costo de Operación/Mano de obra (por botella) & 215.00 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.6cm}
+
+\begin{econbox}
+\textbf{1. Costo Total de Producción:} \\
+Para las 86 unidades producidas, el cálculo es el siguiente:
+\begin{itemize}[leftmargin=1.5em]
+  \item Costo Fijo Insumos: $86 \times \$145 = \$12,470$
+  \item Costo Operativo Directo: $86 \times \$215 = \$18,490$
+  \item \textbf{Costo Total Consolidado: \$30,960}
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{2. Ingresos Totales (Ventas):} \\
+Considerando un precio de venta de \$3,500 por cada unidad producida:
+\begin{itemize}[leftmargin=1.5em]
+  \item $86 \text{ cervezas} \times \$3,500 = \mathbf{\$301,000}$
+\end{itemize}
+
+\vspace{0.2cm}
+\textbf{3. Balance Final (Utilidad Bruta):} \\
+$\text{Ingresos} - \text{Costos Totales} = \$301,000 - \$30,960$ \\
+\textbf{Beneficio Neto de la Semana: \color{forestgreen}\$270,040}
+\end{econbox}
+
+\vspace{0.5cm}
+
+\mysubsection{Eficiencia Económica}
+
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Margen de Utilidad:} El beneficio representa aproximadamente el \textbf{89.7}\% de los ingresos totales, lo que indica un proceso altamente rentable bajo los parámetros de tiempo y costos establecidos.
+  \item \textbf{Costo Unitario Total:} Producir cada unidad final tiene un costo real de \textbf{\$360.00} (Insumos + Costo por botella).
+\end{itemize}
+
+\vspace{1cm}
+{\color{medgray}\rule{\linewidth}{0.6pt}}
+\begin{center}
+  \small\color{medgray}
+  \textit{SIMUL8 -- Módulo 3 \,|\, Análisis Económico \,|\, Ingeniería de Procesos}
+\end{center}
+
+\end{document}
